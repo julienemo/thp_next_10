@@ -2,39 +2,14 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Find movie by name</title>
+    <title>20200417</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div id='detail_zone'>
-      <div id='detail_modal' class="modal">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 id='detail_title' class="modal-title">Just one moment...</h5>
-              <button id="btn_close" type="button" class="close">
-                <span>&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <p id='detail_plot'>You'll see film plot shortly here</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
     <main class='mx-5 my-5  align-self-center'>
-      <div class='row my-4'>
-        <form class='w-100'>
-          <input type="password" class="form-control mb-4 input" id="api_key" placeholder='Paste your own API key here, no key no search'>
-          <input type="text" class="form-control input" id="keyword" placeholder='Search movie by title, press "enter" to see results'>
-          <button class='d-none' type='submit'></button>
-      </div>
-
-      <div id='gallery' class='row justify-content-between mt-3 pt-3'></div>
       <div id='content' class='row'></div>
     </main>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
