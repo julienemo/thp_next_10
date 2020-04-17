@@ -4,7 +4,7 @@ html{
 }
 
 body {
-  height: 100vh;
+  min-height: 100vh;
   text-align: center; 
   background: linear-gradient(to bottom,#D3053A, #C85F6C);
   color:white;
@@ -12,6 +12,7 @@ body {
 }
 
 #title_zone {
+  z_index: 1000;
   color: black;
   font-family: 'Oswald', sans-serif;
   padding-top: 2em;

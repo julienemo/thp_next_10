@@ -1,7 +1,4 @@
-const questionsCall = () => {
-  const amount = document.querySelector('#amount');
-  const level = document.querySelector('#level');
-
+const questionsCall = (amount, level) => {
   fetch(apiUrl(amount.value, level.value))
   .then((response) => response.json())
   .then((response) => {
