@@ -40,47 +40,56 @@ const fillSingleQuestion = (index, question) => {
   droppingCage();
   if (question.type === 'multiple') {
     content.innerHTML = `
-      <div id="question_${index + 1}" class="question border rounded row justify-content-center">
-        <div class='col col-5 p-5 align-middle'>
-          <p>Question ${index + 1}.<br>${question.text}</p> 
-          </div> 
-          <div class='choices col col-7 p-5'>
-            <div class="row justify-content-around">
-              <div class='choice col col-4 '>
-                <button onclick="checkAnswer(this, '${question.answer}')" class='btn btn_choice btn-outline-info'>${question.choices[0]}</button>
+      <div id="question_${index}" class="container justify-content-center">
+        <div class='row justify-content-center border rounded '>
+          <div class='col col-5 p-5 align-middle'>
+            <p>Question ${index + 1}.<br>${question.text}</p> 
+            </div> 
+            <div class='choices col col-7 p-5'>
+              <div class="row justify-content-around">
+                <div class='choice col col-4 '>
+                  <button onclick="checkAnswer(this, '${question.answer}')" class='btn btn_choice btn-outline-info'>${question.choices[0]}</button>
+                </div>
+                <div class='choice col col-4'>
+                  <button onclick="checkAnswer(this, '${question.answer}')" class='btn btn_choice btn-outline-success'>${question.choices[1]}</button>
+                </div>
               </div>
-              <div class='choice col col-4'>
-                <button onclick="checkAnswer(this, '${question.answer}')" class='btn btn_choice btn-outline-dark'>${question.choices[1]}</button>
+              <div class="row justify-content-around">
+                <div class='choice col col-4 '>
+                  <button onclick="checkAnswer(this, '${question.answer}')" class='btn btn_choice btn-outline-dark'>${question.choices[2]}</button>
+                </div>
+                <div class='choice col col-4'>
+                  <button onclick="checkAnswer(this, '${question.answer}')" class='btn btn_choice btn-outline-primary'>${question.choices[3]}</button>
+                </div>
               </div>
+
             </div>
-            <div class="row justify-content-around">
-              <div class='choice col col-4'>
-                <button onclick="checkAnswer(this, '${question.answer}')" class='btn btn_choice btn-outline-primary'>${question.choices[2]}</button>
-              </div>
-              <div class='choice col col-4'>
-                <button onclick="checkAnswer(this, '${question.answer}')" class='btn btn_choice btn-outline-success'>${question.choices[3]}</button>
-              </div>
-            </div>
-          </div>
         </div>
+        <div class='row justify-content-center my-5' id='right_wrong'><h4 id='right_wrong_indication'></h4>
+        </div>
+      </div>
     `
   } else if (question.type === 'boolean') {
     content.innerHTML = `
-      <div id="question_${index}" class="question border rounded row justify-content-center">
-        <div class='col col-5 p-5 align-middle'>
-          <p>Question ${index + 1}.<br>${question.text}</p> 
-          </div> 
-          <div class='choices col col-7 p-5'>
-            <div class="row justify-content-around">
-              <div class='choice col col-4 '>
-                <button onclick="checkAnswer(this, '${question.answer}')" class='btn btn_choice btn-outline-info'>${question.choices[0]}</button>
-              </div>
-              <div class='choice col col-4'>
-                <button onclick="checkAnswer(this, '${question.answer}')" class='btn btn_choice btn-outline-dark'>${question.choices[1]}</button>
+      <div id="question_${index}" class="container justify-content-center">
+        <div class='row justify-content-center border rounded '>
+          <div class='col col-5 p-5 align-middle'>
+            <p>Question ${index + 1}.<br>${question.text}</p> 
+            </div> 
+            <div class='choices col col-7 p-5'>
+              <div class="row justify-content-around">
+                <div class='choice col col-4 '>
+                  <button onclick="checkAnswer(this, '${question.answer}')" class='btn btn_choice btn-outline-info'>${question.choices[0]}</button>
+                </div>
+                <div class='choice col col-4'>
+                  <button onclick="checkAnswer(this, '${question.answer}')" class='btn btn_choice btn-outline-dark'>${question.choices[1]}</button>
+                </div>
               </div>
             </div>
-          </div>
         </div>
+        <div class='row justify-content-center my-5' id='right_wrong'><h4 id='right_wrong_indication'></h4>
+        </div>
+      </div>
     `
   }
 }
@@ -99,7 +108,6 @@ const fillAllQuestions = (questions) => {
 
 const start = () => {
   btn.removeEventListener('click', start);
-  console.log('start')
   const amount = document.querySelector('#amount');
   const level = document.querySelector('#level');
   if ((amount.value.length === 0) || (level.value.length === 0)){
@@ -135,16 +143,16 @@ const storeQuestionsInArray = (targetArray, questions) => {
 }
 
 const checkAnswer = (e, correct) => {
-  console.log(e);
-  console.log((e.innerHTML === correct));
-  document.querySelectorAll('.btn_choice').forEach((btn) => {
-    btn.removeAttribute('onclick');
-    btn.disabled = true;
-  })
-  if (e.innerHTML === correct) {
+  // animation on non-selected btn
+  e.classList.remove('btn_choice');
+  answerSelected();
+  // prevent user from clicking the only btn left again
+  e.disabled = true;
+  if (e.textContent === correct) {
     correctAnswers ++;
-    e.style.color = 'red';
+    document.querySelector('#right_wrong_indication').innerHTML = 'CORRECT';
   } else {
-
+    document.querySelector('#right_wrong_indication').innerHTML = 'INCORRECT';
   }
+  animeRightWrong();
 }

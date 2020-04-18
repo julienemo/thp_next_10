@@ -12,7 +12,7 @@ body {
 }
 
 #title_zone {
-  z_index: 1000;
+  z-index: 1000;
   color: black;
   font-family: 'Oswald', sans-serif;
   padding-top: 2em;
@@ -30,10 +30,9 @@ body {
   height: 15vh;
 }
 
-.question{
-  margin: 1em 30em;
+#right_wrong{
+  font-family: 'Oswald', sans-serif !important;
 }
-
 .choice.col{
   margin: 0.6em 0em;
   padding: 0 !important;
