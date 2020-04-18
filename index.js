@@ -96,14 +96,29 @@ const fillSingleQuestion = (index, question) => {
 
 const fillAllQuestions = (questions) => {
   btn.addEventListener('click', () => {
-    if ( step < questions.length) {
+    if ( step < questions.length -1 ) {
       flyingCage();
       setTimeout(()=>{
         fillSingleQuestion(step, questions[step]);
       }, 400);
       step ++;
+    } else {
+      showScoreBoard(questions.length);
     }
   });
+}
+
+const showScoreBoard = (total) => {
+  content.innerHTML = `
+    <div class='text-center mt-5 pt-5'>
+      <h5>Your final score is</h5><br>
+      <h3>${correctAnswers} / ${total}</h3>
+    </div>
+  `
+  btn.innerHTML =  'Play again?'
+  btn.onclick = () => {
+    window.location.reload();
+  }
 }
 
 const start = () => {
